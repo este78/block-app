@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <!-- Post form which submits to the /hello -->
+    <form action="/hello" method="post">
+        <!-- submit a variable to the endpoint called name -->
+        <input type="text" name="name"/>
+        <!-- submit the form -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- if name variable has a name value and is not null or 0 show the content below -->
+    <% if(name) { %>
+        <p>
+            Welcome to the application demo 
+            <%= name %>
+        </p>
+    <% } %>
+    
+
+  </body>
+</html>

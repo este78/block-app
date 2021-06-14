@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    
+    <!-- Get form which submits to the /hello/form_input_get -->
+    <form action="/hello/form_input_get" method="get">
+      <!-- submit a variable to the endpoint called input -->  
+      <input type="text" name="input"/>
+      <!-- submit the form -->
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- if result variable has a result value and is not null or 0 show the content below -->
+    <% if(input) { %>
+      <!-- show the input variable in a paragraph tag -->
+        <p>
+            This is an example using get input
+            <%= input %>
+        </p>
+    <% } %>
+    
+
+  </body>
+</html>

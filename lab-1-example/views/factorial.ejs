@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <p>Enter a number to compute its factorial</p>
+    
+    <!-- Get form which submits to the /hello/factorial -->
+    <form action="/hello/factorial" method="get">
+        <!-- submit a variable to the endpoint called number -->
+        <input type="number" name="number"/>
+        <!-- submit the form -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- if result variable has a result value and is not null or 0 show the content below -->
+    <% if(result) { %>
+        
+        <!-- show the input and result variables in a paragraph tag -->
+        <p>
+            The answer to 
+            <%= input %>! is result <%= result %>!
+        </p>
+
+        <p>the numbers to compute the factorial are:</p>
+        <!-- loop through the array and show each of the values on the web page -->
+        <% for(var i=0; i < arr.length; i++) { %>
+            <%= arr[i] + " " %> 
+        <% } %>
+
+    <% } %>
+
+  </body>
+</html>

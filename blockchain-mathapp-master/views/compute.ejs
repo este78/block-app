@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form action="add" method="get">
+      <input type="number" name="num1" /> + 
+      <input type="number" name="num2" />
+      <br>
+      <button type="submit">submit</button>
+    </form>
+    <%if (result) { %>
+      <%= num1 %> <%= symbol %> <%= num2 %> = <%= result %>
+    <% } %>
+
+
+  </body>
+</html>
