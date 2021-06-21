@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body class="bg-info">
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#"><%= title %></a>
@@ -36,28 +36,31 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Second</th>
+              <th scope="col">Third</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1</th>
               <td><%= parseInt(Math.random()*100) %></td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td><%= parseInt(Math.random()*100) %></td>
+              <td><%= parseInt(Math.random()*100) %></td>
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
+              <td><%= parseInt(Math.random()*100) %></td>
+              <td><%= parseInt(Math.random()*100) %></td>
+              <td><%= parseInt(Math.random()*100) %></td>
             </tr>
             <tr>
               <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
+              <td><%= parseInt(Math.random()*100) %></td>
+              <td><%= parseInt(Math.random()*100) %></td>
+              <td><%= parseInt(Math.random()*100) %></td>
             </tr>
           </tbody>
         </table>
     </div>
+  </body>
+  
