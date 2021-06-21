@@ -13,8 +13,10 @@ router.get('/page1', function(req, res, next) {
 
 /* GET home page. */
 router.get('/page2', function(req, res, next) {
-  res.render('page2', { title: 'Page 2' });
+  res.render('page2', { title: 'Page 2'});
 });
+
+/*random number generator 1-100*/
 
 
 module.exports = router;
