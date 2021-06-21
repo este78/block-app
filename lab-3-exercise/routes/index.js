@@ -16,4 +16,5 @@ router.get('/page2', function(req, res, next) {
   res.render('page2', { title: 'Page 2' });
 });
 
+
 module.exports = router;
