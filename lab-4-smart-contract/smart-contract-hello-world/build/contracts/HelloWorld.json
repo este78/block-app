@@ -17,15 +17,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"helloWorld\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/owner/Desktop/block-chain-labs/Lab-4/smart-contract/contracts/HelloWorld.sol\":\"HelloWorld\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/owner/Desktop/block-chain-labs/Lab-4/smart-contract/contracts/HelloWorld.sol\":{\"keccak256\":\"0xaec25810f19d07d238ff17765935ab8e791974fd23c917ce089769c7b103e51e\",\"urls\":[\"bzz-raw://e0b31900f867adf20f4911f8e8fe6edf77eac936a5ce71230b221977b6d17792\",\"dweb:/ipfs/QmZrkDzXm5raLRyypvz1DjohpWqRYt59ro6xZ9VYHdPY6Y\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5061011d806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063c605f76c14602d575b600080fd5b603360ab565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101560715780820151818401526020810190506058565b50505050905090810190601f168015609d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606040518060400160405280600b81526020017f48656c6c6f20576f726c6400000000000000000000000000000000000000000081525090509056fea265627a7a72315820e022133132686096c536289fa35f333995ca12aa9da8a216793908a1340e497c64736f6c63430005100032",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063c605f76c14602d575b600080fd5b603360ab565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101560715780820151818401526020810190506058565b50505050905090810190601f168015609d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606040518060400160405280600b81526020017f48656c6c6f20576f726c6400000000000000000000000000000000000000000081525090509056fea265627a7a72315820e022133132686096c536289fa35f333995ca12aa9da8a216793908a1340e497c64736f6c63430005100032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"helloWorld\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/x20170416/Documents/GitHub/block-app/lab-4-smart-contract/smart-contract-hello-world/contracts/HelloWorld.sol\":\"HelloWorld\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/x20170416/Documents/GitHub/block-app/lab-4-smart-contract/smart-contract-hello-world/contracts/HelloWorld.sol\":{\"keccak256\":\"0xaec25810f19d07d238ff17765935ab8e791974fd23c917ce089769c7b103e51e\",\"urls\":[\"bzz-raw://e0b31900f867adf20f4911f8e8fe6edf77eac936a5ce71230b221977b6d17792\",\"dweb:/ipfs/QmZrkDzXm5raLRyypvz1DjohpWqRYt59ro6xZ9VYHdPY6Y\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061011d806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063c605f76c14602d575b600080fd5b603360ab565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101560715780820151818401526020810190506058565b50505050905090810190601f168015609d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606040518060400160405280600b81526020017f48656c6c6f20576f726c6400000000000000000000000000000000000000000081525090509056fea265627a7a7231582008185296cc6f0d13199e8b616d13f2e7b10c1b0d90c7c5544a153a3ece29e00364736f6c63430005100032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063c605f76c14602d575b600080fd5b603360ab565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101560715780820151818401526020810190506058565b50505050905090810190601f168015609d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606040518060400160405280600b81526020017f48656c6c6f20576f726c6400000000000000000000000000000000000000000081525090509056fea265627a7a7231582008185296cc6f0d13199e8b616d13f2e7b10c1b0d90c7c5544a153a3ece29e00364736f6c63430005100032",
   "sourceMap": "25:125:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:125:0;;;;;;;",
   "deployedSourceMap": "25:125:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:125:0;;;;;;;;;;;;;;;;;;;57:90;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;57:90:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;95:13;120:20;;;;;;;;;;;;;;;;;;;57:90;:::o",
   "source": "pragma solidity ^0.5.0;\n\ncontract HelloWorld {\n     \n    function helloWorld() public returns (string memory) {\n        return \"Hello World\";\n    }\n\n}",
-  "sourcePath": "/Users/owner/Desktop/block-chain-labs/Lab-4/smart-contract/contracts/HelloWorld.sol",
+  "sourcePath": "C:/Users/x20170416/Documents/GitHub/block-app/lab-4-smart-contract/smart-contract-hello-world/contracts/HelloWorld.sol",
   "ast": {
-    "absolutePath": "/Users/owner/Desktop/block-chain-labs/Lab-4/smart-contract/contracts/HelloWorld.sol",
+    "absolutePath": "/C/Users/x20170416/Documents/GitHub/block-app/lab-4-smart-contract/smart-contract-hello-world/contracts/HelloWorld.sol",
     "exportedSymbols": {
       "HelloWorld": [
         10
@@ -151,7 +151,7 @@
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/Users/owner/Desktop/block-chain-labs/Lab-4/smart-contract/contracts/HelloWorld.sol",
+      "absolutePath": "/C/Users/x20170416/Documents/GitHub/block-app/lab-4-smart-contract/smart-contract-hello-world/contracts/HelloWorld.sol",
       "exportedSymbols": {
         "HelloWorld": [
           10
@@ -307,12 +307,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x77c409f7fB044e708d277A1821A79A6b8361e0cb",
-      "transactionHash": "0x0df1029eb04c9e751f5745dfc3f2a736cf61410ed37f328e88f951ee6f46a8b9"
+      "address": "0x1A9cD400Da9B6aF5020EAC198bc0e641fcCBDE8d",
+      "transactionHash": "0x214be8af7089da39b9464cb3cb2941e9c34becdc8a3c183e4d072b6f6094f0ab"
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-06-03T21:04:10.231Z",
+  "updatedAt": "2021-06-25T19:54:17.758Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
