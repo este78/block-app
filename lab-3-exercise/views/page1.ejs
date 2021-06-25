@@ -9,7 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
+
+
   <body class= "bg-info"> 
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#"><%= title %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,23 +32,22 @@
       </div>
 
     </nav>
-
     <br>
     <div class="container">
-      <form class="row g-3">
+      <form class="row g-3" action= "/page1" method ="POST">
         <div class="col-md-4">
           <label for="validationDefault01" class="form-label">First name</label>
-          <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+          <input type="text" class="form-control" id="validationDefault01" name="name" placeholder="Mark">
         </div>
         <div class="col-md-4">
           <label for="validationDefault02" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+          <input type="text" class="form-control" id="validationDefault02" name="surname" placeholder="Otto">
         </div>
         <div class="col-md-4">
           <label for="validationDefaultUsername" class="form-label">Username</label>
           <div class="input-group">
             <span class="input-group-text" id="inputGroupPrepend2">@</span>
-            <input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
+            <input type="text" class="form-control" id="validationDefaultUsername" name="handle" aria-describedby="inputGroupPrepend2" required>
           </div>
         </div>
        
@@ -56,4 +58,17 @@
       </form>
 
     </div>
+    <br>
+    <!--Declare variable for rendering page-->
+    <% var name %>
+    <!-- if name variable has a name value and is not null or 0 show the content below -->
+    <% if(name) { %>
+      <div class="container">
+        <p>
+          Welcome  
+          <%= name %> <%= surname %>, your handle is <%= handle%>
+      </p>
+      </div>
+     
+    <% } %>
   </body> 
