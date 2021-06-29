@@ -1,5 +1,5 @@
-var StorageDemo = artifacts.require("StorageDemo");
+var IfElse = artifacts.require("IfElse");
 
 module.exports = function(deployer) {
-  deployer.deploy(StorageDemo);
+  deployer.deploy(IfElse);
 };
