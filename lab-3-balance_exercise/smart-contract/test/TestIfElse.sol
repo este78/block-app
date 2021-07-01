@@ -12,6 +12,13 @@ contract TestIfElse {
     function testIfElse() public {
         Assert.equal(ifElse.foo(7), 0, "IfElse result");
     }
-
+    // Testing the adopt() function
+    function testIfElse1() public {
+        Assert.equal(ifElse.foo(11), 1, "IfElse result");
+    }
+    // Testing the adopt() function
+    function testIfElse2() public {
+        Assert.equal(ifElse.foo(50), 2, "IfElse result");
+    }
     
 }

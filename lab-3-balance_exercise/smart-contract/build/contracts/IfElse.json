@@ -23,21 +23,21 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"foo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/x20170416/Documents/GitHub/block-app/lab-3-balance_exercise/smart-contract/contracts/IfElse.sol\":\"IfElse\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/x20170416/Documents/GitHub/block-app/lab-3-balance_exercise/smart-contract/contracts/IfElse.sol\":{\"keccak256\":\"0x2abbfce74f980e3f24f3cbcc1b704f10249ffa3f3f49620c5aa5951081cefe6a\",\"urls\":[\"bzz-raw://f972fee08f845492cd304c2678bacaf963a22eefd74638b1a2ab40044bd6598c\",\"dweb:/ipfs/QmcwkdAyKbuVPT5k6NCFP9dWaAMPjNg9TGGdhmoY67Co4K\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5060bd8061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80632fbebd3814602d575b600080fd5b605660048036036020811015604157600080fd5b8101908080359060200190929190505050606c565b6040518082815260200191505060405180910390f35b60006012821015607e57600090506083565b600190505b91905056fea265627a7a7231582005b511ca6f2c7d4c1ebc1620bac79b31b48a50aa4695d8767d83234fa12757ac64736f6c63430005100032",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80632fbebd3814602d575b600080fd5b605660048036036020811015604157600080fd5b8101908080359060200190929190505050606c565b6040518082815260200191505060405180910390f35b60006012821015607e57600090506083565b600190505b91905056fea265627a7a7231582005b511ca6f2c7d4c1ebc1620bac79b31b48a50aa4695d8767d83234fa12757ac64736f6c63430005100032",
-  "sourceMap": "25:172:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:172:0;;;;;;;",
-  "deployedSourceMap": "25:172:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:172:0;;;;;;;;;;;;;;;;;;;47:148;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;47:148:0;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;89:4;113:2;109:1;:6;105:84;;;138:1;131:8;;;;105:84;177:1;170:8;;47:148;;;;:::o",
-  "source": "pragma solidity ^0.5.0;\n\ncontract IfElse {\n    function foo(uint x) public pure returns (uint) {\n        if (x < 18) {\n            return 0;\n        } else {\n            return 1;\n        }\n    }\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"foo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/x20170416/Documents/GitHub/block-app/lab-3-balance_exercise/smart-contract/contracts/IfElse.sol\":\"IfElse\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/x20170416/Documents/GitHub/block-app/lab-3-balance_exercise/smart-contract/contracts/IfElse.sol\":{\"keccak256\":\"0xce19b6d1b78f679faa9bf25232920e3b8a12d9f9b884e1da78fb1a4d1e24176b\",\"urls\":[\"bzz-raw://fe0b4539b6bbf22c7cdad62443237aac8461d435542ee962fa945893eb6c081f\",\"dweb:/ipfs/QmQgj6py2ydpE4QqxdSr3MMw4tn5ivXjxy1doXtcg3BMeT\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060cd8061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80632fbebd3814602d575b600080fd5b605660048036036020811015604157600080fd5b8101908080359060200190929190505050606c565b6040518082815260200191505060405180910390f35b6000600a821015607e57600090506093565b6014821015608e57600190506093565b600290505b91905056fea265627a7a72315820a9a2d2d494d13f2cc2907fe08540f16d3f4cc7b9b9f33126e44a7cd86c7cdbac64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80632fbebd3814602d575b600080fd5b605660048036036020811015604157600080fd5b8101908080359060200190929190505050606c565b6040518082815260200191505060405180910390f35b6000600a821015607e57600090506093565b6014821015608e57600190506093565b600290505b91905056fea265627a7a72315820a9a2d2d494d13f2cc2907fe08540f16d3f4cc7b9b9f33126e44a7cd86c7cdbac64736f6c63430005100032",
+  "sourceMap": "25:234:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:234:0;;;;;;;",
+  "deployedSourceMap": "25:234:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:234:0;;;;;;;;;;;;;;;;;;;47:210;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;47:210:0;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;89:4;113:2;109:1;:6;105:45;;;138:1;131:8;;;;105:45;168:2;164:1;:6;160:91;;;192:1;185:8;;;;160:91;239:1;232:8;;47:210;;;;:::o",
+  "source": "pragma solidity ^0.5.0;\n\ncontract IfElse {\n    function foo(uint x) public pure returns (uint) {\n        if (x < 10) {\n            return 0;\n        } \n        if (x < 20){\n            return 1;\n        }\n        else {\n            return 2;\n        }\n    }\n}",
   "sourcePath": "C:/Users/x20170416/Documents/GitHub/block-app/lab-3-balance_exercise/smart-contract/contracts/IfElse.sol",
   "ast": {
     "absolutePath": "/C/Users/x20170416/Documents/GitHub/block-app/lab-3-balance_exercise/smart-contract/contracts/IfElse.sol",
     "exportedSymbols": {
       "IfElse": [
-        20
+        27
       ]
     },
-    "id": 21,
+    "id": 28,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -57,18 +57,18 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 20,
+        "id": 27,
         "linearizedBaseContracts": [
-          20
+          27
         ],
         "name": "IfElse",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 18,
+              "id": 25,
               "nodeType": "Block",
-              "src": "95:100:0",
+              "src": "95:162:0",
               "statements": [
                 {
                   "condition": {
@@ -99,7 +99,7 @@
                     "operator": "<",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "hexValue": "3138",
+                      "hexValue": "3130",
                       "id": 9,
                       "isConstant": false,
                       "isLValue": false,
@@ -110,10 +110,10 @@
                       "src": "113:2:0",
                       "subdenomination": null,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_rational_18_by_1",
-                        "typeString": "int_const 18"
+                        "typeIdentifier": "t_rational_10_by_1",
+                        "typeString": "int_const 10"
                       },
-                      "value": "18"
+                      "value": "10"
                     },
                     "src": "109:6:0",
                     "typeDescriptions": {
@@ -121,40 +121,10 @@
                       "typeString": "bool"
                     }
                   },
-                  "falseBody": {
-                    "id": 16,
-                    "nodeType": "Block",
-                    "src": "156:33:0",
-                    "statements": [
-                      {
-                        "expression": {
-                          "argumentTypes": null,
-                          "hexValue": "31",
-                          "id": 14,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": true,
-                          "kind": "number",
-                          "lValueRequested": false,
-                          "nodeType": "Literal",
-                          "src": "177:1:0",
-                          "subdenomination": null,
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_rational_1_by_1",
-                            "typeString": "int_const 1"
-                          },
-                          "value": "1"
-                        },
-                        "functionReturnParameters": 7,
-                        "id": 15,
-                        "nodeType": "Return",
-                        "src": "170:8:0"
-                      }
-                    ]
-                  },
-                  "id": 17,
+                  "falseBody": null,
+                  "id": 14,
                   "nodeType": "IfStatement",
-                  "src": "105:84:0",
+                  "src": "105:45:0",
                   "trueBody": {
                     "id": 13,
                     "nodeType": "Block",
@@ -186,11 +156,128 @@
                       }
                     ]
                   }
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 17,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 15,
+                      "name": "x",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3,
+                      "src": "164:1:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "3230",
+                      "id": 16,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "168:2:0",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_20_by_1",
+                        "typeString": "int_const 20"
+                      },
+                      "value": "20"
+                    },
+                    "src": "164:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "id": 23,
+                    "nodeType": "Block",
+                    "src": "218:33:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "hexValue": "32",
+                          "id": 21,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "239:1:0",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_2_by_1",
+                            "typeString": "int_const 2"
+                          },
+                          "value": "2"
+                        },
+                        "functionReturnParameters": 7,
+                        "id": 22,
+                        "nodeType": "Return",
+                        "src": "232:8:0"
+                      }
+                    ]
+                  },
+                  "id": 24,
+                  "nodeType": "IfStatement",
+                  "src": "160:91:0",
+                  "trueBody": {
+                    "id": 20,
+                    "nodeType": "Block",
+                    "src": "171:33:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "hexValue": "31",
+                          "id": 18,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "192:1:0",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_1_by_1",
+                            "typeString": "int_const 1"
+                          },
+                          "value": "1"
+                        },
+                        "functionReturnParameters": 7,
+                        "id": 19,
+                        "nodeType": "Return",
+                        "src": "185:8:0"
+                      }
+                    ]
+                  }
                 }
               ]
             },
             "documentation": null,
-            "id": 19,
+            "id": 26,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -205,7 +292,7 @@
                   "id": 3,
                   "name": "x",
                   "nodeType": "VariableDeclaration",
-                  "scope": 19,
+                  "scope": 26,
                   "src": "60:6:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -238,7 +325,7 @@
                   "id": 6,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 19,
+                  "scope": 26,
                   "src": "89:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -262,25 +349,25 @@
               ],
               "src": "88:6:0"
             },
-            "scope": 20,
-            "src": "47:148:0",
+            "scope": 27,
+            "src": "47:210:0",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 21,
-        "src": "25:172:0"
+        "scope": 28,
+        "src": "25:234:0"
       }
     ],
-    "src": "0:197:0"
+    "src": "0:259:0"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "/C/Users/x20170416/Documents/GitHub/block-app/lab-3-balance_exercise/smart-contract/contracts/IfElse.sol",
       "exportedSymbols": {
         "IfElse": [
-          20
+          27
         ]
       }
     },
@@ -310,10 +397,10 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            20
+            27
           ],
           "name": "IfElse",
-          "scope": 21
+          "scope": 28
         },
         "children": [
           {
@@ -326,7 +413,7 @@
                 null
               ],
               "name": "foo",
-              "scope": 20,
+              "scope": 27,
               "stateMutability": "pure",
               "superFunction": null,
               "visibility": "public"
@@ -338,7 +425,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "x",
-                      "scope": 19,
+                      "scope": 26,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -371,7 +458,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 19,
+                      "scope": 26,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -401,6 +488,9 @@
               {
                 "children": [
                   {
+                    "attributes": {
+                      "falseBody": null
+                    },
                     "children": [
                       {
                         "attributes": {
@@ -434,15 +524,15 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "hexvalue": "3138",
+                              "hexvalue": "3130",
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "lValueRequested": false,
                               "subdenomination": null,
                               "token": "number",
-                              "type": "int_const 18",
-                              "value": "18"
+                              "type": "int_const 10",
+                              "value": "10"
                             },
                             "id": 9,
                             "name": "Literal",
@@ -486,6 +576,64 @@
                         "id": 13,
                         "name": "Block",
                         "src": "117:33:0"
+                      }
+                    ],
+                    "id": 14,
+                    "name": "IfStatement",
+                    "src": "105:45:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "<",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3,
+                              "type": "uint256",
+                              "value": "x"
+                            },
+                            "id": 15,
+                            "name": "Identifier",
+                            "src": "164:1:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "3230",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 20",
+                              "value": "20"
+                            },
+                            "id": 16,
+                            "name": "Literal",
+                            "src": "168:2:0"
+                          }
+                        ],
+                        "id": 17,
+                        "name": "BinaryOperation",
+                        "src": "164:6:0"
                       },
                       {
                         "children": [
@@ -507,44 +655,78 @@
                                   "type": "int_const 1",
                                   "value": "1"
                                 },
-                                "id": 14,
+                                "id": 18,
                                 "name": "Literal",
-                                "src": "177:1:0"
+                                "src": "192:1:0"
                               }
                             ],
-                            "id": 15,
+                            "id": 19,
                             "name": "Return",
-                            "src": "170:8:0"
+                            "src": "185:8:0"
                           }
                         ],
-                        "id": 16,
+                        "id": 20,
                         "name": "Block",
-                        "src": "156:33:0"
+                        "src": "171:33:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 7
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "32",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 2",
+                                  "value": "2"
+                                },
+                                "id": 21,
+                                "name": "Literal",
+                                "src": "239:1:0"
+                              }
+                            ],
+                            "id": 22,
+                            "name": "Return",
+                            "src": "232:8:0"
+                          }
+                        ],
+                        "id": 23,
+                        "name": "Block",
+                        "src": "218:33:0"
                       }
                     ],
-                    "id": 17,
+                    "id": 24,
                     "name": "IfStatement",
-                    "src": "105:84:0"
+                    "src": "160:91:0"
                   }
                 ],
-                "id": 18,
+                "id": 25,
                 "name": "Block",
-                "src": "95:100:0"
+                "src": "95:162:0"
               }
             ],
-            "id": 19,
+            "id": 26,
             "name": "FunctionDefinition",
-            "src": "47:148:0"
+            "src": "47:210:0"
           }
         ],
-        "id": 20,
+        "id": 27,
         "name": "ContractDefinition",
-        "src": "25:172:0"
+        "src": "25:234:0"
       }
     ],
-    "id": 21,
+    "id": 28,
     "name": "SourceUnit",
-    "src": "0:197:0"
+    "src": "0:259:0"
   },
   "compiler": {
     "name": "solc",
@@ -559,7 +741,7 @@
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-06-25T20:26:42.328Z",
+  "updatedAt": "2021-07-01T13:29:32.927Z",
   "devdoc": {
     "methods": {}
   },
