@@ -6,12 +6,10 @@ import "../contracts/Factorial.sol";
 
 contract TestFactorial {
     // The address of the ifElse contract to be tested
-    Factorial factorial = Factorial(DeployedAddresses.Factorial());
+    Factorial fact = Factorial(DeployedAddresses.Factorial());
 
     // Testing the adopt() function
     function testFactorial() public {
-        Assert.equal(factorial.factorial(5), 120, "IfElse result");
+        Assert.equal(fact.fact(5), 120, "Factorial result");
     }
- 
-    
 }
