@@ -5,7 +5,7 @@ var BlockchainUtils = require("truffle-blockchain-utils");
 const truffleContract = require('truffle-contract');
 
 var Web3 = require("web3");
-var sqlite = require("better-sqlite3");
+
 
 const todoListContract = require('../build/contracts/TodoList.json');
 

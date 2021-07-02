@@ -23,7 +23,6 @@ contract TodoList {
     bool completed
   );
   
-  
   event TaskUpdated(
     uint id,
     string content,
