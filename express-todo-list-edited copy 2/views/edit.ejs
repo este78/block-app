@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <% for(var i=0; i < todos.length; i++) { %>
+      <!-- todo: [0,1,2] : [id, content, completed] : [uint, string, bool] -->
+      ID: <%= todos[i][0] %>
+      Task: <%= todos[i][1] %>
+      Status: as bool <%= todos[i][2] %>
+      <form action = "/edit" method="get">
+        <input name="todo_id" type="hidden" value="<%= todos[i][0] %>">
+        <input id="currentAcc" type="hidden" name="currentAcc">
+        <button type="submit">Change Status</button>
+      </form>
+    <br>
+  <% } %>
+  <script>
+    var ethKey = null;
+    (async function() {
+      
+      ethKey = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      console.log(ethKey)
+      document.getElementById("currentAcc").value = ethKey
+
+    })()
+  </script>
+
+  </body>
+</html>

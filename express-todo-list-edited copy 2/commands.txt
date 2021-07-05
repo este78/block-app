@@ -1,0 +1,30 @@
+truffle compile
+truffle migrate
+truffle test
+
+
+
+
+
+Troubleshooting:
+Remove node modules
+Reinstall npm
+
+Remove build
+Recompile truffle
+
+Close Ganache app
+Reopen Ganache app
+
+
+Then look for errors in the contract
+
+
+
+function doalert(checkboxElem) {
+  if (checkboxElem.checked) {
+    alert ("hi");
+  } else {
+    alert ("bye");
+  }
+}
