@@ -1,15 +1,15 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.16;
 
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
-import "../contracts/Loop.sol";
+import "../contracts/SlotMachine.sol";
 
 contract TestRNG {
     // The address of the loop contract to be tested
-    Loop loop = Loop(DeployedAddresses.Loop());
+    SlotMachine round = SlotMachine(DeployedAddresses.SlotMachine());
 
-    function testLoop() public {
-        Assert.equal(loop.factorial(5), 625, "Loop result");   
+    function testIsPrime() public {
+        Assert.equal(round.isPrime(13), true, "Loop result");   
     }
 
     

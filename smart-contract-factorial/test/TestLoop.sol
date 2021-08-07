@@ -11,6 +11,8 @@ contract TestLoop {
     function testLoop() public {
         Assert.equal(loop.factorial(5), 625, "Loop result");
     }
-
+      function testIsPrime() public {
+        Assert.equal(loop.isPrime(13), true, "Loop result");   
+    }
     
 }

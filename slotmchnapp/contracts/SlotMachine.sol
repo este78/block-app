@@ -1,8 +1,8 @@
 pragma solidity ^0.5.16;
-pragma experimental ABIEncoderV2;
+
 
 contract SlotMachine {
-    // Declare state variables of the contract
+    /*// Declare state variables of the contract
     address owner;
 
     //constructor set ownership of the slot machine
@@ -26,10 +26,10 @@ contract SlotMachine {
         else{
             _player.transfer(0 ether);
         }
-    } 
+    } */
     //https://stackoverflow.com/questions/40200089/number-prime-test-in-javascript
     //Check if number us prime. Prime numbers will receive a prize from the slot machine
-    function isPrime(uint256 _numberDrawed) pure public returns(bool _winner){
+    function isPrime(uint256 _numberDrawed) pure public returns(bool){
         uint256 numberDrawed = _numberDrawed;
         for(uint i = 2; i < numberDrawed; i++){
             if(numberDrawed % i == 0 ){
