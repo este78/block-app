@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <a href="/users/logout">logout</a>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <% if(error) { %>
+      <h2>Error: <%= error %></h2>
+    <% } %>
+
+
+    <h2>Add new Book</h2>
+    <form action="/add" method="post">
+      <input type="text" name="book_name">
+      <input id="currentAcc" type="hidden" name="currentAcc">
+      <button type="submit">Submit</button>
+    </form>
+    <br>
+
+
+    <% for(var i=0; i < books.length; i++) { %>
+        
+        <input type="hidden" name="book_id" value="<%= books[i][0] %>">
+        Book: <%= books[i][1] %>
+        <form action="edit" method="get">
+          <input type="hidden" name="book_id" value="<%= books[i][0] %>">
+          <input type="hidden" name="book_name" value="<%= encodeURIComponent(books[i][1]) %>">
+          <input type="hidden" name="address" id="address">
+          <button type="submit">Edit Book</button>
+        </form>
+      <br>
+    <% } %>
+
+
+
+    
+    <script>
+      var ethKey = null;
+      (async function() {
+        
+        ethKey = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        console.log(ethKey)
+        document.getElementById("currentAcc").value = ethKey[0]
+        document.getElementById("address").value = ethKey[0]
+
+      })()
+    </script>
+  </body>
+</html>

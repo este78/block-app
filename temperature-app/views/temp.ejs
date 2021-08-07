@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form method = "post" action="/temp/create"> 
+      <input id="currentAcc" type="hidden" name="currentAcc">
+      <button type ="submit">Submit</button>
+    </form>
+
+    <% for(var i=0; i < temps.length; i++) { %>
+        Temp: <%= temps[i].tempCel/100 %>
+        <br>
+        Location: <%= temps[i].location %>
+        <br>
+        Date: <%= temps[i].date %>
+        <br>
+        long: <%= temps[i].long/10000 %> / lat: <%= temps[i].lat/10000 %>
+        <br>
+    <br>
+  <% } %>
+
+
+    <script>
+      var ethKey = null;
+      (async function() {
+        
+        ethKey = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        console.log(ethKey)
+        document.getElementById("currentAcc").value = ethKey
+
+      })()
+    </script>
+
+  </body>
+</html>

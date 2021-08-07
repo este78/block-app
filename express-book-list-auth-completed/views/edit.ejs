@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <h2>Edit Book</h2>
+    <form action="/edit" method="post">
+        <input type="text" name="book_name" value="<%= decodeURIComponent(book) %>">
+        <input id="currentAcc" type="hidden" name="currentAcc">
+          
+        <input type="hidden" name="book_id" value="<%= book_id %>">
+        <button type="submit">Update Book</button>
+    </form>
+    <br>
+
+    <script>
+        var ethKey = null;
+        (async function() {
+          ethKey = await window.ethereum.request({ method: 'eth_requestAccounts' })
+          console.log(ethKey)
+          document.getElementById("currentAcc").value = ethKey[0]
+  
+        })()
+      </script>
+
+
+</body>
+
+</html>

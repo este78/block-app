@@ -1,9 +1,9 @@
-pragma solidity ^0.8.6;
+pragma solidity ^0.5.16;
 pragma experimental ABIEncoderV2;
 
 contract SlotMachine {
     // Declare state variables of the contract
-    address payable owner;
+    address owner;
 
     //constructor set ownership of the slot machine
     constructor() public{
@@ -11,13 +11,13 @@ contract SlotMachine {
     } 
 
     //Gets the balance of the slot machine in wei
-    function slotBalance() public returns(uint256){
+    function slotBalance() view public returns(uint256){
         require (msg.sender == owner, "You do not have access to this feature");
         return address(this).balance;
     }
 
     //Spin function
-    function spin(address payable _player) external {
+    function spin(address payable _player) payable external {
         require(msg.value == 1 ether, "You must pay 1 ETH per spin");
         uint256 numberDrawed = rand();
         if (isPrime(numberDrawed)){
@@ -29,9 +29,9 @@ contract SlotMachine {
     } 
     //https://stackoverflow.com/questions/40200089/number-prime-test-in-javascript
     //Check if number us prime. Prime numbers will receive a prize from the slot machine
-    function isPrime(uint256 _numberDrawed) public returns(bool){
+    function isPrime(uint256 _numberDrawed) pure public returns(bool _winner){
         uint256 numberDrawed = _numberDrawed;
-        for(uint i = 2; i< numberDrawed; i++){
+        for(uint i = 2; i < numberDrawed; i++){
             if(numberDrawed % i == 0 ){
                 return false;
             }
@@ -44,9 +44,9 @@ https://stackoverflow.com/questions/58188832/solidity-generate-unpredictable-ran
   function rand() public view returns(uint256){
         uint256 seed = uint256(keccak256(abi.encodePacked(
             block.timestamp + block.difficulty +
-            ((uint256(keccak256(abi.encodePacked(block.coinbase)))) / (now)) +
+            ((uint256(keccak256(abi.encodePacked(block.coinbase)))) / (block.timestamp)) +
             block.gaslimit + 
-            ((uint256(keccak256(abi.encodePacked(msg.sender)))) / (now)) +
+            ((uint256(keccak256(abi.encodePacked(msg.sender)))) / (block.timestamp)) +
             block.number
         )));
 
