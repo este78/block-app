@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.8.6;
 pragma experimental ABIEncoderV2;
 
 contract SlotMachine {
@@ -13,12 +13,33 @@ contract SlotMachine {
     //Gets the balance of the slot machine in wei
     function slotBalance() public returns(uint256){
         require (msg.sender == owner, "You do not have access to this feature");
-        return this.balance;
+        return address(this).balance;
     }
 
-    function isPrime() public returns(bool){}
+    //Spin function
+    function spin(address payable _player) external {
+        require(msg.value == 1 ether, "You must pay 1 ETH per spin");
+        uint256 numberDrawed = rand();
+        if (isPrime(numberDrawed)){
+            _player.transfer(3 ether);
+        }
+        else{
+            _player.transfer(0 ether);
+        }
+    } 
+    //https://stackoverflow.com/questions/40200089/number-prime-test-in-javascript
+    //Check if number us prime. Prime numbers will receive a prize from the slot machine
+    function isPrime(uint256 _numberDrawed) public returns(bool){
+        uint256 numberDrawed = _numberDrawed;
+        for(uint i = 2; i< numberDrawed; i++){
+            if(numberDrawed % i == 0 ){
+                return false;
+            }
+            return numberDrawed > 1;
+        }
+    }
 
-/* Random Number Generator
+/* Random Number Generator used to draw numbers
 https://stackoverflow.com/questions/58188832/solidity-generate-unpredictable-random-number-that-does-not-depend-on-input*/
   function rand() public view returns(uint256){
         uint256 seed = uint256(keccak256(abi.encodePacked(
@@ -29,11 +50,29 @@ https://stackoverflow.com/questions/58188832/solidity-generate-unpredictable-ran
             block.number
         )));
 
-        return (seed - ((seed / 1000) * 1000));
+        return (seed - ((seed / 100) * 100));
     }
 }
 
   /*
+    //in case I want to log the spins
+      struct Spin {
+        uint id;
+        uint256 numberDrawed;
+        bool winner;
+    }
+    mapping(uint => Spin) public spins;
+    uint[] public spinsSpinned;
+    
+    event SpinCreated(
+        uint id,
+        string numberDrawed,
+        bool winner,
+        uint prize
+    );
+
+
+   // class example
   uint public roundCount = 0;
 
   struct Round {
