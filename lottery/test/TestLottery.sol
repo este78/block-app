@@ -8,8 +8,14 @@ contract TestLottery {
     // The address of the lottery contract to be tested
     Lottery lottery = Lottery(DeployedAddresses.Lottery());
     
-    function testLoop() public {
-        Assert.equal(lottery.factorial(5), 625, "Loop result");
+    function testPush() public{
+        lottery.addScore(4);
+        lottery.addScore(5);
+        Assert.equal(lottery.getlength(),(2), "Lottery result");  
+    }
+    function testClear() public{
+        lottery.clearArray();
+        Assert.equal(lottery.getlength(),(0), "Lottery result");  
     }
     function testIsPrime() public {
       Assert.equal(lottery.isPrime(13), true, "Lottery result");   
