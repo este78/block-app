@@ -6,9 +6,15 @@ contract Lottery{
    uint private initialFund;
    
    constructor () payable public{
+       require(msg.value >= 30 ether, "Initial funds required");
        owner = msg.sender;
        initialFund = msg.value;
        address(this).transfer(msg.value);
+   }
+   //restricts the execution of certain functions to the owner of the contract 
+   modifier onlyOwner {
+       require(msg.sender == owner, "Only the owner has access to this feature");
+       _;
    }
    
 /*===================================================================================================================*/
@@ -20,28 +26,24 @@ contract Lottery{
     }
     
     //get balance of money in lottery account
-    function getBalance() public view returns (uint){
-        require(msg.sender == owner, "Only the owner may access the contract's balance");
+    function getBalance() public view onlyOwner returns (uint){
         return address(this).balance;
     }
 
     //Transfer any profits to the contract owner
-    function withdraw() public {
-        require(msg.sender == owner, "you do not have permission to withdraw funds");
+    function withdraw() public onlyOwner {
         require(address(this).balance > initialFund, "there are no funds in the contract's account");
         owner.transfer(address(this).balance - initialFund);
     }
     
     //Transfer any and all ether to the owner
-    function withdrawAll() public {
-        require(msg.sender == owner, "you do not have permission to withdraw funds");
+    function withdrawAll() public onlyOwner {
         require(address(this).balance > 0, "there are no funds in the contract's account");
         owner.transfer(address(this).balance);
     }
     
     //pay ether to the lottery
-    function addFunds() payable public {
-        require(msg.sender == owner, "Only the owner may add funds");
+    function addFunds() payable public onlyOwner {
         address(this).transfer(msg.value);
     }
     
@@ -68,7 +70,7 @@ contract Lottery{
    function tryYourLuck() payable public {
        //conditions
        require(msg.value == 1 ether, "You need to pay 1 ether to play");
-       require(address(this).balance > 3 ether, "Machine has no funds");
+       require(address(this).balance > 3 ether, "Lottery machine has no funds");
        //2 function calls for the draw (draw number, chack if winner)
        uint myNumber = rand();
        bool winner = isPrime(myNumber);
@@ -108,7 +110,7 @@ contract Lottery{
         } 
         return num > 1;
     }
-
+    //get all draws, used for display
     function getAllDraws() public view returns (Draw[] memory){
         Draw[] memory _draws = new Draw[](drawIndex);
         for (uint i = 0; i < drawIndex; i++) {
