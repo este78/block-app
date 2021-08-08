@@ -2,11 +2,8 @@ pragma solidity ^0.5.0;
 
 contract Lottery{
    address payable owner;
-   mapping (uint => uint) public draws;
    
    uint256 private initialFund = 500000000000000000000;
-   
-   event Log(uint256 random);
    
    constructor () payable public{
        owner = msg.sender;
@@ -50,15 +47,34 @@ contract Lottery{
 /*===================================================================================================================*/
 // LOTTERY FUNCTIONALLITY
 /*===================================================================================================================*/
+    uint public drawIndex = 0;
+    mapping (uint => Draw) public draws;
+
+    struct Draw{
+        uint id;
+        uint256 number;
+        bool winner;
+        address player;
+    }
+
+    event DrawCreated(
+     uint256 numDrawed,
+     bool winner,
+     address player
+    );
+
    //Player draw a number  
    function tryYourLuck() payable public {
        require(msg.value == 1 ether, "You need to pay 1 ether to play");
        require(address(this).balance > 3 ether, "Machine has no funds");
        uint myNumber = rand();
-       if (isPrime(myNumber)){
+       bool winner = isPrime(myNumber);
+       if (winner){
            msg.sender.transfer(3000000000000000000);
        }
-       emit Log(myNumber);
+       draws[drawIndex] = Draw(drawIndex, myNumber, winner, msg.sender);
+       drawIndex++;
+       emit DrawCreated(myNumber, winner, msg.sender);
    }
   
   
