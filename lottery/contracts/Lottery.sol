@@ -1,12 +1,13 @@
 pragma solidity ^0.5.0;
+pragma experimental ABIEncoderV2;
 
 contract Lottery{
    address payable owner;
-   
-   uint256 private initialFund = 500000000000000000000;
+   uint private initialFund;
    
    constructor () payable public{
        owner = msg.sender;
+       initialFund = msg.value;
        address(this).transfer(msg.value);
    }
    
@@ -106,5 +107,13 @@ contract Lottery{
             index++;
         } 
         return num > 1;
+    }
+
+    function getAllDraws() public view returns (Draw[] memory){
+        Draw[] memory _draws = new Draw[](drawIndex);
+        for (uint i = 0; i < drawIndex; i++) {
+            _draws[i] = draws[i];
+        }
+        return _draws;
     }
 }
