@@ -6,21 +6,20 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %>. If the number drawed is prime, win a prize.</p>
+    <h2>Welcome to <%= title %>. If the number drawed is prime, win a prize.</h2>
 
     <% if(error) { %>
       <h2>Error: <%= error %></h2>
     <% } %>
 
-    <h2>New Draw</h2>
     <form action="/add" method="post">
       <input id="currentAcc" type="hidden" name="currentAcc">
       <button name="spin" type="submit">Draw a number for 10 finney</button>
     </form>
     <br>
-    <h1><%= draws[draws.length-1][1]%></h1>
+    <h1 id="numberDrawed"><%= draws[draws.length-1][1]%></h1>
     <% if(draws[draws.length-1][2]) { %>
-      <h1>YOU WIN 30 FINNEY</h1>
+      <h1>PRIME! YOU WIN 30 FINNEY</h1>
     <% } else { %>
       <h1>You can try again for 10 finney</h1>
     <% } %>

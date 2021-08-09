@@ -1,7 +1,28 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: teal;
+  text-align: center;
+  color:rgb(46, 30, 32);
 }
+
+h1{
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+
+
+button{
+	margin:1%;	
+	color: white; /* Font Colour */
+	font-size: 25px; /* Font Size */
+	font-weight: bold;
+	border-radius: 10px; /* Border at the bottom */
+	background-color: rgb(5,119,61);
+}
+
 
 a {
   color: #00B7FF;
