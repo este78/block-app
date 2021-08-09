@@ -6,6 +6,41 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome to <%= title %>. If the number drawed is prime, win a prize.</p>
+
+    <% if(error) { %>
+      <h2>Error: <%= error %></h2>
+    <% } %>
+
+    <h2>New Draw</h2>
+    <form action="/add" method="post">
+      <input id="currentAcc" type="hidden" name="currentAcc">
+      <button name="spin" type="submit">Draw a number for 10 finney</button>
+    </form>
+    <br>
+    <h1><%= draws[draws.length-1][1]%></h1>
+    <% if(draws[draws.length-1][2]) { %>
+      <h1>YOU WIN 30 FINNEY</h1>
+    <% } else { %>
+      <h1>You can try again for 10 finney</h1>
+    <% } %>
+    
+
+    <% for(var i=0; i < draws.length; i++) { %> 
+        <input type="hidden" name="draw_id" value="<%= draws[i][0] %>">
+        Draw: <%= draws[i][1] %>, Winner: <%= draws[i][2] %>, Player: <%= draws[i][3] %>
+      <br>
+    <% } %>
+
+    <script>
+      var ethKey = null;
+      (async function() {
+        
+        ethKey = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        console.log(ethKey)
+        document.getElementById("currentAcc").value = ethKey
+
+      })()
+    </script>
   </body>
 </html>
