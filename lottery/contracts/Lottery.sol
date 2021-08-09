@@ -6,14 +6,14 @@ contract Lottery{
    uint private initialFund;
    
    constructor () payable public{
-       require(msg.value >= 30 ether, "Initial funds required");
-       owner = msg.sender;
+       require(msg.value >= 500 finney, "Initial funds required");
+       owner = tx.origin;
        initialFund = msg.value;
        address(this).transfer(msg.value);
    }
    //restricts the execution of certain functions to the owner of the contract 
    modifier onlyOwner {
-       require(msg.sender == owner, "Only the owner has access to this feature");
+       require(tx.origin == owner, "Only the owner has access to this feature");
        _;
    }
    
@@ -44,7 +44,7 @@ contract Lottery{
     
     //pay ether to the lottery
     function addFunds() payable public onlyOwner {
-        address(this).transfer(msg.value);
+        require(msg.value >= 10 finney, "You must add 10 finney or more to the contract account");
     }
     
 /*===================================================================================================================*/
@@ -69,14 +69,14 @@ contract Lottery{
    //Player draw a number  
    function tryYourLuck() payable public {
        //conditions
-       require(msg.value == 1 ether, "You need to pay 1 ether to play");
-       require(address(this).balance > 3 ether, "Lottery machine has no funds");
+       require(msg.value == 10 finney, "You need to pay 10 finney to play");
+       require(address(this).balance >= 30 finney, "Lottery machine has no funds");
        //2 function calls for the draw (draw number, chack if winner)
        uint myNumber = rand();
        bool winner = isPrime(myNumber);
        // transfer ether if winner
        if (winner){
-           msg.sender.transfer(3000000000000000000);
+           msg.sender.transfer(30 finney);
        }
        //Log the draw in a mapping 
        draws[drawIndex] = Draw(drawIndex, myNumber, winner, msg.sender);
