@@ -5,7 +5,7 @@ import { StyledDropZone } from 'react-drop-zone';
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import "react-drop-zone/dist/styles.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import fileReaderPullStream from 'pull-file-reader';
 import ipfs from './ipfs';
 import Moment  from 'react-moment';
@@ -34,11 +34,13 @@ class App extends Component {
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, this.getFile);
       //automatically refresh the list when changing accounts
-      web3.currentProvider.publicConfigStore.on('update', async () => {
+
+      web3.currentProvider.on('accountsChanged', async () => {
         const changedAccounts = await web3.eth.getAccounts();
         this.setState({accounts: changedAccounts});
         this.getFile();
       })
+    
 
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -46,6 +48,7 @@ class App extends Component {
         `Failed to load web3, accounts, or contract. Check console for details.`,
       );
       console.error(error);
+      
     }
   };
 
@@ -63,7 +66,9 @@ class App extends Component {
           //get the file from the chain
           let file = await contract.methods.getFile(i).call({from: accounts[0]});
           //push the data to our array in js
-          files.push(file);
+          //if(file.hash != ""){
+            files.push(file);
+          //}
       }
       //set the data as the state of the application
       this.setState({ solidityDrive: files });  
@@ -90,6 +95,21 @@ class App extends Component {
       console.log(error);
     }
   };
+  
+  removeFile = async(key) =>{
+    try {
+      //gets these vars from the state, see above
+      const {contract, accounts} = this.state;
+      let length = await contract.methods.getLength().call({from: accounts[0]});
+      let removed = await contract.methods.removeFile(key,length).send({from: accounts[0], gas: 300000});
+      console.log(removed);
+      //once we dropped the new file we want to call all the uploaded files by calling getFiles()
+      this.getFile();
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   render() {
     const {solidityDrive} = this.state;
@@ -106,6 +126,7 @@ class App extends Component {
                   <th width="5%" scope="row">Type</th>
                   <th className="text-left">File Name</th>
                   <th className="text-right">Date</th>
+                  <th>Index</th>
                 </tr>
               </thead>
               <tbody>
@@ -114,11 +135,12 @@ class App extends Component {
                   <th><FileIcon size="30" extension={item[2]} {...defaultStyles[item[2]]}></FileIcon></th>
                   <th className="text-left"><a href={"https://ipfs.io/ipfs/"+item[0]} >{item[1]}</a></th>
                   <th className="text-right"><Moment format="YYYY/MM/DD" unix>{item[3]}</Moment></th>
+                  <th><Button onClick={() => this.removeFile(key)}>{key}</Button></th>
                 </tr>
                  )): null}
                 
               </tbody>
-          </Table>
+          </Table>  
        </div>
      </div>
     );
