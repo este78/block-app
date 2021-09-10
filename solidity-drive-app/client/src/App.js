@@ -12,8 +12,12 @@ import Moment  from 'react-moment';
 import "./App.css";
 
 class App extends Component {
-  state = { solidityDrive: [], web3: null, accounts: null, contract: null };
 
+  constructor(){
+    super();
+    this.state = { solidityDrive: [], web3: null, accounts: null, contract: null };
+  }
+  
   componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
@@ -33,10 +37,11 @@ class App extends Component {
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, this.getFile);
+      
       //automatically refresh the list when changing accounts
-
       web3.currentProvider.on('accountsChanged', async () => {
         const changedAccounts = await web3.eth.getAccounts();
+        //update the state and get the files from the new account for rendering
         this.setState({accounts: changedAccounts});
         this.getFile();
       })
@@ -135,7 +140,7 @@ class App extends Component {
                   <th><FileIcon size="30" extension={item[2]} {...defaultStyles[item[2]]}></FileIcon></th>
                   <th className="text-left"><a href={"https://ipfs.io/ipfs/"+item[0]} >{item[1]}</a></th>
                   <th className="text-right"><Moment format="YYYY/MM/DD" unix>{item[3]}</Moment></th>
-                  <th><Button onClick={() => this.removeFile(key)}>{key}</Button></th>
+                  <th><Button onClick={()=>this.removeFile(key)}>{key}</Button></th>
                 </tr>
                  )): null}
                 
