@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import SolidityDriveContract from "./contracts/SolidityDrive.json";
 import RugbyDAUTokenContract from "./contracts/RugbyDAUToken.json";
 import getWeb3 from "./getWeb3";
 import { StyledDropZone } from 'react-drop-zone';
@@ -10,14 +9,16 @@ import { Table, Button } from 'reactstrap';
 import fileReaderPullStream from 'pull-file-reader';
 import ipfs from './ipfs';
 import Moment  from 'react-moment';
-import InputForm from "./components/InputForm";
+import InputForm from "./components/MinterForm";
+import TransferForm from "./components/TransferForm";
 import "./App.css";
+import CommonAreaForm from "./components/CommonAreaForm";
 
 class App extends Component {
 
   constructor(){
     super();
-    this.state = { solidityDrive: [], web3: null, accounts: null, contract: null };
+    this.state = { nftDrive: [], web3: null, accounts: null, contract: null };
   }
   
   componentDidMount = async () => {
@@ -62,7 +63,7 @@ class App extends Component {
     try {
       //gets these vars from the state, see above
       const {accounts, contract} = this.state;
-      //in order to loop through the chain data we need the length of the array for each mapping entry, see the SolidityDrive contract.
+      //in order to loop through the chain data we need the length of the array for each mapping entry, see the nftDrive contract.
       let filesLength = await contract.methods.getLength().call({from: accounts[0]});
       //create an array where to store the data from the contract
       let files = []
@@ -76,11 +77,10 @@ class App extends Component {
           //}
       }
       //set the data as the state of the application
-      this.setState({ solidityDrive: files });  
+      this.setState({ nftDrive: files });  
     } catch (error) {
       console.log(error);
-    }
-    
+    }  
   };
 
   onDrop = async(file) =>{
@@ -89,12 +89,9 @@ class App extends Component {
       const {contract, accounts} = this.state;
       const stream = fileReaderPullStream(file);
       const result = await ipfs.add(stream);
-      const nft = await contract.methods.createToken(result[0].hash).send({from: accounts[0], gas: 300000});
-      console.log(nft);
-      
       const timestamp = Math.round(+new Date() / 1000);
       const type = file.name.substr(file.name.lastIndexOf(".")+1);
-      let uploaded = await contract.methods.add(nft, result[0].hash, file.name, type, timestamp).send({from: accounts[0], gas: 300000});
+      let uploaded = await contract.methods.add(result[0].hash, file.name, type, timestamp).send({from: accounts[0], gas: 600000});
       
       console.log(uploaded);
       //once we dropped the new file we want to call all the uploaded files by calling getFiles()
@@ -115,34 +112,62 @@ class App extends Component {
       console.log(error);
     }
   };
+
+  transferFile = async(i,val) =>{
+    const {nftDrive,contract, accounts} =this.state;
+    if(nftDrive!==[]){
+        try{
+          let tokenID = nftDrive[i].id;
+          (console.log(tokenID));
+          await contract.methods.transferRGBY(i,tokenID,val).send({from:accounts[0],gas:600000});
+        }catch(error){
+          console.log(error);
+        }
+      }else{
+        alert("The Drive is empty, nothing to transfer");
+      }
+  };
   
-  removeFile = async(key) =>{
+  showCommonArea = async()=>{
+    //any await must be wrapped in a try/catch
     try {
       //gets these vars from the state, see above
-      const {contract, accounts} = this.state;
-      let length = await contract.methods.getLength().call({from: accounts[0]});
-      let removed = await contract.methods.removeFile(key,length).send({from: accounts[0], gas: 300000});
-      console.log(removed);
-      //once we dropped the new file we want to call all the uploaded files by calling getFiles()
-      this.getFile();
-
+      const {accounts, contract} = this.state;
+      //in order to loop through the chain data we need the length of the array for each mapping entry, see the nftDrive contract.
+      let filesLength = await contract.methods.getMarketLength().call({from: accounts[0]});
+      //create an array where to store the data from the contract
+      let files = []
+      //loop through the data in the chain linked to the sender account (account 0)
+      for (let i = 0; i < filesLength; i++) {
+          //get the file from the chain
+          let file = await contract.methods.getMarketFile(i).call({from: accounts[0]});
+          //push the data to our array in js
+          //if(file.hash != ""){
+            files.push(file);
+          //}
+      }
+      //set the data as the state of the application
+      this.setState({ nftDrive: files });  
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   render() {
-    const {solidityDrive} = this.state;
+    const {nftDrive} = this.state;
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
      <div className= "App" >
        <div className= "container pt-3">
-          <StyledDropZone onDrop={this.onDrop} />
+         <h1>RUGBYDAU NFT-EXCHANGE</h1>
+         <br />
+          <StyledDropZone onDrop={this.onDrop}>Create a NFT By Dropping A File Here </StyledDropZone>
           <br/>
-          <InputForm setMinter={this.setMinter}/>
+          <TransferForm transferFile={this.transferFile}></TransferForm>
           <br/>
+          <CommonAreaForm showCommonArea={this.showCommonArea} ></CommonAreaForm>
           <Table>
               <thead>
                 <tr>
@@ -154,18 +179,20 @@ class App extends Component {
                 </tr>
               </thead>
               <tbody>
-                {solidityDrive !== [] ? solidityDrive.map((item, key) =>(
+                {nftDrive !== [] ? nftDrive.map((item, key) =>(
                   <tr>
                     <th>{item[0]}</th>
                     <th><FileIcon size="30" extension={item[3]} {...defaultStyles[item[3]]}></FileIcon></th>
                     <th className="text-left"><a href={"https://ipfs.io/ipfs/"+item[1]} >{item[2]}</a></th>
                     <th className="text-right"><Moment format="YYYY/MM/DD" unix>{item[4]}</Moment></th>
-                    <th><Button onClick={()=>this.removeFile(key)}>{key}</Button></th>
+                    <th><Button>{key}</Button></th>
                 </tr>
                  )): null}
                 
               </tbody>
-          </Table>  
+          </Table> 
+          <InputForm setMinter={this.setMinter}/>
+          <br/> 
        </div>
      </div>
     );

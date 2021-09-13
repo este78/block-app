@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 
 contract RugbyDAUToken is ERC721URIStorage {
+    //used for the display of tokens
     struct File{
         uint id;
         string hash;
@@ -15,45 +16,46 @@ contract RugbyDAUToken is ERC721URIStorage {
         bool wasAdded;
     }
     mapping(address=>File[]) files;
-
-    uint private _tokenIdCounter;
-
-    //The contract address of the exchange,it requires operator permission to transfer tokens between owner and buyer. The address will be set up in the contract's constructor along with the name and symboi of the token.
     
+    //used for governance and minting
     address owner;
+    uint private _tokenIdCounter;
     mapping (address => bool) private minters;
 
-    constructor() ERC721("RugbyDAU Token", "RGBY") {
+    constructor() ERC721("RugbyDAU", "RGBY") {
         owner = msg.sender;
         setMinter(owner);
     }
-  modifier onlyOwner {
+    //restrict the use of certain methods to the contract owner
+    modifier onlyOwner {
        require(tx.origin == owner, "Only the owner has access to this feature");
        _;
     }
-  //internal function to concatenate the base URI to the CID from IPFS
-  function _baseURI() internal pure override returns (string memory) {
+
+    //internal function to concatenate the base URI to the CID from IPFS
+    function _baseURI() internal pure override returns (string memory) {
         return "https://ipfs.io/ipfs/";
     }
-  //set and revoke permission to creators to mint
-  function setMinter(address _creator) public onlyOwner{
-      minters[_creator]= true;
+    //set and revoke permission to creators to mint
+    function setMinter(address _creator) public onlyOwner{
+          minters[_creator]= true;
     }
-  function revokeMinter(address _creator) public onlyOwner{
-      minters[_creator]=false;
+    function revokeMinter(address _creator) public onlyOwner{
+          minters[_creator]=false;
     }
-  function isMinter(address _creator) public view returns (bool){
-      return minters[_creator];
+    function isMinter(address _creator) public view returns (bool){
+          return minters[_creator];
     }
      
     //creates a token and adds the data to the drive
     function add(string memory _hash, string memory _fileName, string memory _fileType, uint _date) public{
         require(isMinter(msg.sender), "Only authorised creators can mint");
-        
+        //tokens start count from 1, any token showing id in the display has been deleted (there is no token zero)
+        _tokenIdCounter++;
         uint256 tokenId = _tokenIdCounter;
         //internal functions from ERC721, mint new token and set the URI of the underlying digital asset
         _mint(msg.sender, tokenId);
-        _setTokenURI(tokenId, tokenURI);
+        _setTokenURI(tokenId, _hash);
         
        //First file ever added to the drive
         if (files[msg.sender].length == 0){
@@ -82,11 +84,12 @@ contract RugbyDAUToken is ERC721URIStorage {
                files[msg.sender].push(File({id: tokenId,hash:_hash,fileName:_fileName,fileType:_fileType,date:_date, wasAdded:true})); 
             }
        }
-        _tokenIdCounter++;
     }
+
     function transferRGBY(uint _index, uint _tokenId, address _to) public {
 
-        require(msg.sender == owner || isApprovedForAll(owner, msg.sender), "Only Approved or Owner can transfer this token");
+        require(_isApprovedOrOwner(msg.sender, _tokenId), "Only Approved or Owner can transfer this token");
+        _transfer(msg.sender, _to, _tokenId);
 
         File memory transferFile = files[msg.sender][_index];
 
@@ -105,7 +108,7 @@ contract RugbyDAUToken is ERC721URIStorage {
                     lastIndex--;
                  }
                  //in case all files were deleted, add the new file in the first position
-                 if(lastIndex == 0 && (!files[msg.sender][0].wasAdded)){
+                 if(lastIndex == 0 && (!files[owner][0].wasAdded)){
                      files[_to][0]=transferFile;
                  }else{
                      //add the next file in place of the last deleted entry, last index has a +1 because the loop will subtract 1 extra on its last loop
@@ -117,10 +120,11 @@ contract RugbyDAUToken is ERC721URIStorage {
                files[_to].push(transferFile); 
             }
        }
+       _removeFile(_index, files[msg.sender].length);
     } 
 
     //if needed swaps last entry with file target for removal then deletes last entry
-    function removeFile(uint _index, uint _arrayLength) public{
+    function _removeFile(uint _index, uint _arrayLength) internal{
         uint lastElement = _arrayLength-1;
         if(_index != lastElement){
             files[msg.sender][_index] = files[msg.sender][lastElement];
@@ -136,7 +140,19 @@ contract RugbyDAUToken is ERC721URIStorage {
     //we need the length of each array in order to properly loop trough each of them
     function getLength() public view returns(uint){
         return files[msg.sender].length;
-    } 
+    }
+    
+    
+    //common room 
+     //we need this getter as we just cannot loop through the mapped array
+    function getMarketFile(uint _index) public view returns(File memory){
+        return files[owner][_index];
+    }
+    //we need the length of each array in order to properly loop trough each of them
+    function getMarketLength() public view returns(uint){
+        return files[owner].length;
+    }
+
 }
 
 
