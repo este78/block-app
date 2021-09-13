@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.0;
+pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract RugbyDAUMarketplace is ReentrancyGuard {
+contract RugbyDAUMarket is ReentrancyGuard {
     //Vars to keep track of the length of the arrays that need display in the shop
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
@@ -80,7 +80,7 @@ contract RugbyDAUMarketplace is ReentrancyGuard {
         idToMerchandise[itemId].seller.transfer(msg.value);
         
         //transfer the ownership from this contract's address to the buyer's address
-        IERC721(rugbydauTokenContract).transferFrom(address(this), msg.sender, myTokenId);
+        IERC721(rugbydauTokenContract).transferFrom(tx.origin, msg.sender, myTokenId);
         
         //update the Merchandise mapping wth the new owner and changing the isSold to true
         idToMerchandise[itemId].owner= payable(msg.sender);
@@ -162,5 +162,3 @@ contract RugbyDAUMarketplace is ReentrancyGuard {
         return myMerchandise;
     }
 }
-
-

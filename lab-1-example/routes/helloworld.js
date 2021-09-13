@@ -39,6 +39,7 @@ router.get('/factorial', function(req, res, next) {
 
     // show the factorial page render pass the result, input and arr variables to the page
     res.render('factorial', { 
+		title:'factorial',
         result: result,
         input: input,
         arr: arr

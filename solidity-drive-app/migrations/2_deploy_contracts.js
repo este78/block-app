@@ -1,5 +1,5 @@
-var SolidityDrive = artifacts.require("./SolidityDrive.sol");
+var RugbyDAUToken = artifacts.require("./RugbyDAUToken.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(SolidityDrive);
+  deployer.deploy(RugbyDAUToken);
 };

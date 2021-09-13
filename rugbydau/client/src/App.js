@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+import RugbyDAUMarketContract from "./contracts/RugbyDAUMarket.json";
 import RugbyDAUTokenContract from "./contracts/RugbyDAUToken.json";
 import getWeb3 from "./getWeb3";
-
+import {Route,Link} from 'react-router-dom'
 import "./App.css";
+import UserPage from "./components/UserPage";
+import Market from "./components/Market";
+import Creator from "./components/Creator";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
+  state = { nft: [], web3: null, accounts: null, contractMrkt: null, contractTkn:null };
 
   componentDidMount = async () => {
     try {
@@ -17,15 +23,19 @@ class App extends Component {
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = RugbyDAUTokenContract.networks[networkId];
-      const instance = new web3.eth.Contract(
+      const deployedNetwork = RugbyDAUMarketContract.networks[networkId];
+      const market= new web3.eth.Contract(
+        RugbyDAUMarketContract.abi,
+        deployedNetwork && deployedNetwork.address,
+      );
+      const token = new web3.eth.Contract(
         RugbyDAUTokenContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
+      this.setState({ web3, accounts, contractMrkt: market, contractTkn:token });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -35,17 +45,18 @@ class App extends Component {
     }
   };
 
-  runExample = async () => {
-    const { accounts, contract } = this.state;
+  getNFTs = async () => {
+    const { contractMrkt, contractTkn } = this.state;
 
-    // Stores a given value, 5 by default.
-    await contract.methods.set(5).send({ from: accounts[0] });
+    // Get the vNFTs Listed in the Marketplace.
+    const data = await contractMrkt.methods.showMarketStock();
+    const items = await Promise.all(data.map(async i =>{
+      const tokenUri = await contractTkn.tokenURI(i.tokenId)
+      const metada = await ipfs.get(tokenUri)
 
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
-
+    }))
     // Update state with the result.
-    this.setState({ storageValue: response });
+    this.setState({ nft : [] });
   };
 
   render() {
@@ -54,17 +65,11 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
-        </p>
-        <p>
-          Try changing the value stored on <strong>line 42</strong> of App.js.
-        </p>
-        <div>The stored value is: {this.state.storageValue}</div>
+        <NavBar />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/creator" component={Creator} />
+        <Route exact path="/market" component={Market} />
+        <Route exact path="/userpage" component={UserPage} />
       </div>
     );
   }

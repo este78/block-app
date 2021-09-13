@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import SolidityDriveContract from "./contracts/SolidityDrive.json";
+//import SolidityDriveContract from "./contracts/SolidityDrive.json";
+import RugbyDAUTokenContract from "./contracts/RugbyDAUToken.json";
 import getWeb3 from "./getWeb3";
 import { StyledDropZone } from 'react-drop-zone';
 import { FileIcon, defaultStyles } from 'react-file-icon';
@@ -9,6 +10,7 @@ import { Table, Button } from 'reactstrap';
 import fileReaderPullStream from 'pull-file-reader';
 import ipfs from './ipfs';
 import Moment  from 'react-moment';
+import InputForm from "./components/InputForm";
 import "./App.css";
 
 class App extends Component {
@@ -28,11 +30,10 @@ class App extends Component {
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SolidityDriveContract.networks[networkId];
+      const deployedNetwork = RugbyDAUTokenContract.networks[networkId];
       const instance = new web3.eth.Contract(
-        SolidityDriveContract.abi,
-        deployedNetwork && deployedNetwork.address,
-      );
+        RugbyDAUTokenContract.abi, 
+        deployedNetwork && deployedNetwork.address);
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -46,7 +47,6 @@ class App extends Component {
         this.getFile();
       })
     
-
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -89,14 +89,29 @@ class App extends Component {
       const {contract, accounts} = this.state;
       const stream = fileReaderPullStream(file);
       const result = await ipfs.add(stream);
+      const nft = await contract.methods.createToken(result[0].hash).send({from: accounts[0], gas: 300000});
+      console.log(nft);
+      
       const timestamp = Math.round(+new Date() / 1000);
       const type = file.name.substr(file.name.lastIndexOf(".")+1);
-      let uploaded = await contract.methods.add(result[0].hash, file.name, type, timestamp).send({from: accounts[0], gas: 300000});
+      let uploaded = await contract.methods.add(nft, result[0].hash, file.name, type, timestamp).send({from: accounts[0], gas: 300000});
+      
       console.log(uploaded);
       //once we dropped the new file we want to call all the uploaded files by calling getFiles()
       this.getFile();
 
     } catch (error) {
+      console.log(error);
+    }
+  };
+
+  setMinter = async(address) =>{
+    try{
+        const {contract,accounts} = this.state;
+        await contract.methods.setMinter(address).send({from:accounts[0],gas:300000});
+        let isMinter = await contract.methods.isMinter(address).send({from:accounts[0],gas:300000})
+        console.log(isMinter)
+    }catch(error){
       console.log(error);
     }
   };
@@ -125,9 +140,13 @@ class App extends Component {
      <div className= "App" >
        <div className= "container pt-3">
           <StyledDropZone onDrop={this.onDrop} />
+          <br/>
+          <InputForm setMinter={this.setMinter}/>
+          <br/>
           <Table>
               <thead>
                 <tr>
+                  <th className="text-left">Token ID</th>
                   <th width="5%" scope="row">Type</th>
                   <th className="text-left">File Name</th>
                   <th className="text-right">Date</th>
@@ -137,10 +156,11 @@ class App extends Component {
               <tbody>
                 {solidityDrive !== [] ? solidityDrive.map((item, key) =>(
                   <tr>
-                  <th><FileIcon size="30" extension={item[2]} {...defaultStyles[item[2]]}></FileIcon></th>
-                  <th className="text-left"><a href={"https://ipfs.io/ipfs/"+item[0]} >{item[1]}</a></th>
-                  <th className="text-right"><Moment format="YYYY/MM/DD" unix>{item[3]}</Moment></th>
-                  <th><Button onClick={()=>this.removeFile(key)}>{key}</Button></th>
+                    <th>{item[0]}</th>
+                    <th><FileIcon size="30" extension={item[3]} {...defaultStyles[item[3]]}></FileIcon></th>
+                    <th className="text-left"><a href={"https://ipfs.io/ipfs/"+item[1]} >{item[2]}</a></th>
+                    <th className="text-right"><Moment format="YYYY/MM/DD" unix>{item[4]}</Moment></th>
+                    <th><Button onClick={()=>this.removeFile(key)}>{key}</Button></th>
                 </tr>
                  )): null}
                 
