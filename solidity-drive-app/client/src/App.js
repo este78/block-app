@@ -87,10 +87,12 @@ class App extends Component {
     try {
       //gets these vars from the state, see above
       const {contract, accounts} = this.state;
+      //ipfs upload and read, other metadata is derived
       const stream = fileReaderPullStream(file);
       const result = await ipfs.add(stream);
       const timestamp = Math.round(+new Date() / 1000);
       const type = file.name.substr(file.name.lastIndexOf(".")+1);
+      //new nft is minted
       let uploaded = await contract.methods.add(result[0].hash, file.name, type, timestamp).send({from: accounts[0], gas: 600000});
       
       console.log(uploaded);
@@ -101,7 +103,7 @@ class App extends Component {
       console.log(error);
     }
   };
-
+  //set minter permissions, only owner function
   setMinter = async(address) =>{
     try{
         const {contract,accounts} = this.state;
@@ -112,7 +114,7 @@ class App extends Component {
       console.log(error);
     }
   };
-
+  //transferrring a nft owned by sender to another user provider
   transferFile = async(i,val) =>{
     const {nftDrive,contract, accounts} =this.state;
     if(nftDrive!==[]){
@@ -127,7 +129,7 @@ class App extends Component {
         alert("The Drive is empty, nothing to transfer");
       }
   };
-  
+  //WORK IN PROGRESS. It needs to go in a different page
   showCommonArea = async()=>{
     //any await must be wrapped in a try/catch
     try {
